@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://localhost/shop/public/common/jquery.min.js"></script>
+    <script src="http://localhost/shop/public/common/ajaxForm.js"></script>
+</head>
+<body>
+<?php if($tip){
+ echo "添加成功";
+}?>
+<form method="post" id="form" action="http://localhost/shop/index.php?p=admin&c=category&a=addExec">
+    上级分类:
+    <select name="pid">
+        <option value="0">顶级分类</option>
+        <?php foreach($data as $v){
+    echo '<option value="'.$v['id'].'"';
+    if(@v['id']==$id){
+        echo ' selected';
+    }
+    echo '>'.str_repeat('--',$v['level']).$v['name'].'</option>';}?>
+
+    </select>
+    分类名称:<input type="text" name="name">
+    <input type="submit" value="添加分类">
+    <input type="submit" value="添加并返回" id="add_return">
+</form>
+<script>
+    $('#form').ajaxForm();
+    $('#add_return').click(function () {
+        $('#form').append('<input type="hidden" name="return" value="1">');
+    })
+</script>
+</body>
+</html>

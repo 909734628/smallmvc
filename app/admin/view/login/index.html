@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是主页</title>
+    <script src="http://localhost/shop/public/common/jquery.min.js"></script>
+    <script src="http://localhost/shop/public/common/ajaxForm.js"></script>
+</head>
+<body>
+<form method="post" id="loginForm" action="http://localhost/shop/index.php?p=admin&c=login&a=loginExec">
+    <label for="username">用户名:</label>
+    <input type="text" name="username" required id="username">
+    <label for="password">密码:</label>
+    <input type="password" name="password" required id="password">
+    <label for="captcha">验证码:</label>
+    <input type="text" name="captcha" required id="captcha">
+    <img src="http://localhost/shop/index.php?p=admin&c=login&a=captcha" id="vodeImg" title="点击刷新验证码" onclick="changeCode()">
+    <input type="submit" value="登录">
+</form>
+<script>
+    var img = document.getElementById('vodeImg');
+    function changeCode() {
+        img.src += "&currentTime="+(new Date()).getTime();
+    }
+    $("#loginForm").ajaxForm(function (data) {
+        console.log(data);
+        if(!data.ok){
+            img.click();
+        }
+    })
+</script>
+</body>
+</html>

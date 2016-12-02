@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table bgcolor="#faebd7" align="center" cellpadding="1" cellspacing="1">
+    <?php foreach($data as $v){
+      echo "<tr>";
+      echo "<td>{$v['id']}</td>";
+      echo "<td>{$v['name']}</td>";
+      echo "</tr>";
+    }
+    ?>
+</table>
+<div class="page">
+    <?php
+    echo $pageShow;
+    ?>
+</div>
+</body>
+</html>
